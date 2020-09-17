@@ -1,0 +1,49 @@
+<form #projectForm="ngForm" (submit)="saveProject()">
+    <p class="form-title">Add new project</p>
+    <div class="form-control">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="newProject.name" name="name" #name="ngModel" required>
+
+        <div class="errors-list">
+            <div class="error" *ngIf="name.errors?.required && !name.untouched">
+                <p>Field 'Name' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="newProject.description"
+         name="description" #description="ngModel" required minlength="15">
+
+        <div class="errors-list">
+            <div class="error" *ngIf="description.errors?.required && !description.untouched">
+                <p>Field 'Description' is required</p>
+            </div>
+            <div class="error" *ngIf="description.errors?.minlength && !description.untouched">
+                <p>Field 'Description' must be at least 15 characters</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Deadline</label>
+        <input type="date" [(ngModel)]="newProject.deadline" name="deadline">
+    </div>
+    <div class="form-control">
+        <label>Author Id</label>
+        <input type="number" [(ngModel)]="newProject.authorId" name="authorId">
+    </div>
+    <div class="form-control">
+        <label>Team Id</label>
+        <input type="number" [(ngModel)]="newProject.teamId" name="teamId" 
+        #teamId="ngModel" required>
+
+        <div class="errors-list">
+            <div class="error" *ngIf="teamId.errors?.required && !teamId.untouched">
+                <p>Field 'Team Id' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="submit-wr">
+        <input type="submit" value="Add project" [disabled] = "projectForm.invalid">
+    </div>
+</form>

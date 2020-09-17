@@ -1,0 +1,15 @@
+<div class="title-wr">
+    <h3 id="title">Teams</h3>
+    <img *ngIf="!onAddNewTeam" src="../../../../assets/img/add.svg" 
+    (click)="changeAddNewState()" title="Add new team">
+    <img *ngIf="onAddNewTeam" src="../../../../assets/img/remove.svg"
+     (click)="changeAddNewState()" alt="Hide">
+</div>
+<app-add-team *ngIf="onAddNewTeam" (onAddNewTeam)="addTeamHandler($event)"></app-add-team>
+<div class="team-list-wr">
+    <ul>
+        <li *ngFor="let team of teams">
+            <app-team [team]='team' appTaskState (onDeleteTeam)="deleteTeamHandler($event)"></app-team>
+        </li>
+    </ul>
+</div>

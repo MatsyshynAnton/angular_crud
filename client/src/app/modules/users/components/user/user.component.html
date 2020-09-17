@@ -1,0 +1,48 @@
+<div class="user-wr">
+    <div class="user">
+        <div class="user-info" (click)="changeAdditionalInfoState()">
+            <span>#{{user.id}}</span>
+            <span>{{user.firstName + ' ' + user.lastName}}</span>
+        </div>
+        <div class="user-actions">
+            <img src="../../../../assets/img/edit.svg" alt="Edit user" (click)="editClick()">
+            <img src="../../../../assets/img/delete.svg" alt="Delete user" (click)="deleteClick()">
+        </div>
+    </div>
+    <div class="user-additional-info" *ngIf="additionalInfo">
+        <p class="additional-info-title">Additional information about #{{user.id}} user</p>
+        <div class="user-fields">
+            <div class="user-field">
+                <span class="key">Id:</span>
+                <span class="value">{{user.id}}</span>
+            </div>
+            <div class="user-field">
+                <span class="key">Firstname:</span>
+                <span class="value">{{user.firstName}}</span>
+            </div>
+            <div class="user-field">
+                <span class="key">Lastname:</span>
+                <span class="value">{{user.lastName}}</span>
+            </div>
+            <div class="user-field">
+                <span class="key">Email:</span>
+                <span class="value">{{user.email}}</span>
+            </div>
+            <div class="user-field">
+                <span class="key">Birthday:</span>
+                <span class="value">{{user.birthday | ukrainianDateFromat}}</span>
+            </div>
+            <div class="user-field">
+                <span class="key">Registered at:</span>
+                <span class="value">{{user.registeredAt | ukrainianDateFromat}}</span>
+            </div>
+            <div class="user-field">
+                <span class="key">Team Id:</span>
+                <span class="value">{{user.teamId}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="user-edit" *ngIf="onEdit">
+        <app-edit-user [user]="user" (onUpdateUser)="onUpdateUserHandler($event)"></app-edit-user>
+    </div>
+</div>

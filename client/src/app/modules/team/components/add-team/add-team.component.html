@@ -1,0 +1,15 @@
+<form #teamForm="ngForm" (submit)="saveTeam()">
+    <p class="form-title">Add new team</p>
+    <div class="form-control">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="newTeam.name" name="name" #name="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="name.errors?.required && !name.untouched">
+                <p>Field 'Name' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="submit-wr">
+        <input type="submit" value="Add team" [disabled] = "teamForm.invalid">
+    </div>
+</form>

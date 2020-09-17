@@ -1,0 +1,24 @@
+<form #teamForm="ngForm" (submit)="updateTeam()">
+    <p class="form-title">Update team</p>
+    <div class="form-control">
+        <label>Id</label>
+        <input type="text" [(ngModel)]="team.id" name="id" readonly>
+    </div>
+    <div class="form-control">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="team.name" name="name" #name="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="name.errors?.required && !name.untouched">
+                <p>Field 'Name' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Created at</label>
+        <input type="text" [ngModel]="team.createdAt | ukrainianDateFromat" (ngModelChange)="team.createdAt = $event"
+         name="createdAt" readonly>
+    </div>
+    <div class="submit-wr">
+        <input type="submit" value="Save changes" [disabled] = "teamForm.invalid">
+    </div>
+</form>

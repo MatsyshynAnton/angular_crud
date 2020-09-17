@@ -1,0 +1,50 @@
+<form #userForm="ngForm" (submit)="updateUser()">
+    <p class="form-title">Add new user</p>
+    <div class="form-control">
+        <label>Id</label>
+        <input type="text" [(ngModel)]="user.id" name="id" readonly>
+    </div>
+    <div class="form-control">
+        <label>Firstname</label>
+        <input type="text" [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="firstName.errors?.required && !firstName.untouched">
+                <p>Field 'Firstname' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Lastname</label>
+        <input type="text" [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="lastName.errors?.required && !lastName.untouched">
+                <p>Field 'Lastname' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="user.email" name="email" #email="ngModel"
+        [email]="true" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="email.errors?.required && !email.untouched">
+                <p>Field 'Email' is required</p>
+            </div>
+            <div class="error" *ngIf="email.errors?.email && !email.untouched">
+                <p>Field 'Email' contains invalid value</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Registered at</label>
+        <input type="text" [ngModel]="user.registeredAt | date" (ngModelChange)="user.registeredAt = $event"
+         name="registeredAt" readonly>
+    </div>
+    <div class="form-control">
+        <label>Team Id</label>
+        <input type="number" [(ngModel)]="user.teamId" name="teamId" #teamId="ngModel">
+    </div>
+    <div class="submit-wr">
+        <input type="submit" value="Save changes" [disabled] = "userForm.invalid">
+    </div>
+</form>

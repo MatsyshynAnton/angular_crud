@@ -1,0 +1,50 @@
+main {
+    padding: 20px 5% 20px 5%;
+}
+
+.toolbar-wr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+
+    margin-bottom: 10px;
+}
+
+.toolbar {
+    width: 90%;
+    display: flex;
+    align-items: center;
+
+    nav {
+        margin: 10px;
+    }
+}
+
+.nav-wr {
+    width: 45%;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .link-wr {
+        margin: 5px;
+        flex-grow: 1;
+
+        a {
+            transition: .3s;
+        }
+
+        a:hover {
+            transition: .3s;
+            color: #B8B8B8;
+        }
+    }
+}

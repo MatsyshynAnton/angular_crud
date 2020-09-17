@@ -1,0 +1,48 @@
+<div class="project-wr">
+    <div class="project">
+        <div class="project-info" (click)="changeAdditionalInfoState()">
+            <span>#{{project.id}}</span>
+            <span>{{project.name}}</span>
+        </div>
+        <div class="project-actions">
+            <img src="../../../../assets/img/edit.svg" alt="Edit project" (click)="editClick()">
+            <img src="../../../../assets/img/delete.svg" alt="Delete project" (click)="deleteClick()">
+        </div>
+    </div>
+    <div class="project-additional-info" *ngIf="additionalInfo">
+        <p class="additional-info-title">Additional information about #{{project.id}} project</p>
+        <div class="project-fields">
+            <div class="project-field">
+                <span class="key">Id:</span>
+                <span class="value">{{project.id}}</span>
+            </div>
+            <div class="project-field">
+                <span class="key">Name:</span>
+                <span class="value">{{project.name}}</span>
+            </div>
+            <div class="project-field">
+                <span class="key">Description:</span>
+                <span class="value">{{project.description}}</span>
+            </div>
+            <div class="project-field">
+                <span class="key">Created at:</span>
+                <span class="value">{{project.createdAt | ukrainianDateFromat}}</span>
+            </div>
+            <div class="project-field">
+                <span class="key">Deadline:</span>
+                <span class="value">{{project.deadline | ukrainianDateFromat}}</span>
+            </div>
+            <div class="project-field">
+                <span class="key">Author Id:</span>
+                <span class="value">{{project.authorId}}</span>
+            </div>
+            <div class="project-field">
+                <span class="key">Team Id:</span>
+                <span class="value">{{project.teamId}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="project-edit" *ngIf="onEdit">
+        <app-edit-project [project]="project" (onProjectUpdate)="updateProjectHandler($event)"></app-edit-project>
+    </div>
+</div>

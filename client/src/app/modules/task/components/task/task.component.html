@@ -1,0 +1,55 @@
+<div class="task-wr">
+    <div class="task">
+        <div class="task-mark" appTaskState [stateId]="task.taskStateId">
+
+        </div>
+        <div class="task-info" (click)="changeAdditionalInfoState()">
+            <span>#{{task.id}}</span>
+            <span>{{task.name}}</span>
+        </div>
+        <div class="task-actions">
+            <img src="../../../../assets/img/edit.svg" alt="Edit task" (click)="editClick()">
+            <img src="../../../../assets/img/delete.svg" alt="Delete task" (click)="deleteClick()">
+        </div>
+    </div>
+    <div class="task-additional-info" *ngIf="additionalInfo">
+        <p class="additional-info-title">Additional information about #{{task.id}} task</p>
+        <div class="task-fields">
+            <div class="task-field">
+                <span class="key">Id:</span>
+                <span class="value">{{task.id}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Name:</span>
+                <span class="value">{{task.name}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Description:</span>
+                <span class="value">{{task.description}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Created at:</span>
+                <span class="value">{{task.createdAt | ukrainianDateFromat}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Finished at:</span>
+                <span class="value">{{task.finishedAt | ukrainianDateFromat}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Task State Id:</span>
+                <span class="value">{{task.taskStateId}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Project Id:</span>
+                <span class="value">{{task.projectId}}</span>
+            </div>
+            <div class="task-field">
+                <span class="key">Performer Id:</span>
+                <span class="value">{{task.performerId}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="task-edit" *ngIf="onEdit">
+        <app-edit-task [task]="task" (onUpdateTask)="onUpdateTaskHandler($event)"></app-edit-task>
+    </div>
+</div>

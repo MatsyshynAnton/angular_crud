@@ -1,0 +1,15 @@
+<div class="title-wr">
+    <h3 id="title">Projects</h3>
+    <img *ngIf="!onAddNewProject" src="../../../../assets/img/add.svg" 
+    (click)="changeAddNewState()" title="Add new project">
+    <img *ngIf="onAddNewProject" src="../../../../assets/img/remove.svg"
+     (click)="changeAddNewState()">
+</div>
+<app-add-project *ngIf="onAddNewProject" (onAddNewProject)="addProjectHandler($event)"></app-add-project>
+<div class="project-list-wr">
+    <ul>
+        <li *ngFor="let project of projects">
+            <app-project [project]="project" (onDeleteProject)="deleteProjectHandler($event)"></app-project>
+        </li>
+    </ul>
+</div>

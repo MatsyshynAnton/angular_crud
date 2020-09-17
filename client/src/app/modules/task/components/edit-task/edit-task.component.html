@@ -1,0 +1,72 @@
+<form #taskForm="ngForm" (submit)="updateTask()">
+    <p class="form-title">Update task</p>
+    <div class="form-control">
+        <label>Id</label>
+        <input type="text" [(ngModel)]="task.id" name="id" readonly>
+    </div>
+    <div class="form-control">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="task.name" name="name" #name="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="name.errors?.required && !name.untouched">
+                <p>Field 'Name' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="task.description" name="description"
+         #description="ngModel" required minlength="20">
+        <div class="errors-list">
+            <div class="error" *ngIf="description.errors?.required && !description.untouched">
+                <p>Field 'Description' is required</p>
+            </div>
+            <div class="error" *ngIf="description.errors?.minlength && !description.untouched">
+                <p>Field 'Description' must be at least 20 characters</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Created at</label>
+        <input type="text" [ngModel]="task.createdAt | date" (ngModelChange)="task.createdAt = $event"
+         name="createdAt" readonly>
+    </div>
+    <div class="form-control">
+        <label>Finished at</label>
+        <input type="text" [ngModel]="task.finishedAt | date" (ngModelChange)="task.finishedAt = $event"
+         name="finishedAt" readonly>
+    </div>
+    <div class="form-control">
+        <label>Task State Id</label>
+        <input type="number" [(ngModel)]="task.taskStateId" name="taskStateId" 
+        #taskStateId="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="taskStateId.errors?.required && !taskStateId.untouched">
+                <p>Field 'Task State Id' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Project Id</label>
+        <input type="number" [(ngModel)]="task.projectId" name="projectId" 
+        #projectId="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="projectId.errors?.required && !projectId.untouched">
+                <p>Field 'Project Id' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-control">
+        <label>Performer Id</label>
+        <input type="number" [(ngModel)]="task.performerId" name="performerId" 
+        #performerId="ngModel" required>
+        <div class="errors-list">
+            <div class="error" *ngIf="performerId.errors?.required && !performerId.untouched">
+                <p>Field 'Performer Id' is required</p>
+            </div>
+        </div>
+    </div>
+    <div class="submit-wr">
+        <input type="submit" value="Save changes" [disabled] = "taskForm.invalid">
+    </div>
+</form>

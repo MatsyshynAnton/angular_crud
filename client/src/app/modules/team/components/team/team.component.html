@@ -1,0 +1,32 @@
+<div class="team-wr">
+    <div class="team">
+        <div class="team-info" (click)="changeAdditionalInfoState()">
+            <span>#{{team.id}}</span>
+            <span>{{team.name}}</span>
+        </div>
+        <div class="team-actions">
+            <img src="../../../../assets/img/edit.svg" alt="Edit team" (click)="editClick()">
+            <img src="../../../../assets/img/delete.svg" alt="Delete team" (click)="deleteClick()">
+        </div>
+    </div>
+    <div class="team-additional-info" *ngIf="additionalInfo">
+        <p class="additional-info-title">Additional information about #{{team.id}} team</p>
+        <div class="team-fields">
+            <div class="team-field">
+                <span class="key">Id:</span>
+                <span class="value">{{team.id}}</span>
+            </div>
+            <div class="team-field">
+                <span class="key">Name:</span>
+                <span class="value">{{team.name}}</span>
+            </div>
+            <div class="team-field">
+                <span class="key">Created at:</span>
+                <span class="value">{{team.createdAt | ukrainianDateFromat}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="team-edit" *ngIf="onEdit">
+        <app-edit-team [team]="team" (onUpdateTeam)="onUpdateTeamHandler($event)"></app-edit-team>
+    </div>
+</div>

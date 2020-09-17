@@ -1,0 +1,15 @@
+<div class="title-wr">
+    <h3 id="title">Users</h3>
+    <img *ngIf="!onAddNewUser" src="../../../../assets/img/add.svg" 
+    (click)="changeAddNewState()" title="Add new user">
+    <img *ngIf="onAddNewUser" src="../../../../assets/img/remove.svg"
+     (click)="changeAddNewState()" alt="Hide">
+</div>
+<app-add-user *ngIf="onAddNewUser" (onAddNewUser)="addUserHandler($event)"></app-add-user>
+<div class="user-list-wr">
+    <ul>
+        <li *ngFor="let user of users">
+            <app-user [user]='user' (onUserDelete)="deleteUserHandler($event)"></app-user>
+        </li>
+    </ul>
+</div>
